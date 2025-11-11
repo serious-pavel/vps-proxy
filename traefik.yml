@@ -1,0 +1,22 @@
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+api:
+  insecure: false
+
+providers:
+  docker:
+    exposedByDefault: false
+  file:
+    directory: /etc/traefik/dynamic_conf
+    watch: true
+
+certificatesResolvers:
+  le:
+    acme:
+      email: ${TRAEFIK_ACME_EMAIL}
+      storage: /letsencrypt/acme.json
+      tlsChallenge: true
