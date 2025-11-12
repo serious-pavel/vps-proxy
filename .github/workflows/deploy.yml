@@ -30,15 +30,21 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           passphrase: ${{ secrets.VPS_SSH_PASSPHRASE }}
-          envs: TRAEFIK_ACME_EMAIL,DEPLOY_TARGET
+          envs: TRAEFIK_ACME_EMAIL,DEPLOY_TARGET,DASHBOARD_USER,DASHBOARD_ACL_IP,DOMAIN
           script: |
             # Ensure the external Docker network exists (idempotent)
             docker network inspect traefik >/dev/null 2>&1 || docker network create traefik
 
             cd "$DEPLOY_TARGET"
             export TRAEFIK_ACME_EMAIL="${TRAEFIK_ACME_EMAIL}"
+            export DASHBOARD_USER="${DASHBOARD_USER}"
+            export DASHBOARD_ACL_IP="${DASHBOARD_ACL_IP}"
+            export DOMAIN="${DOMAIN}"
             docker compose pull
             docker compose up -d
         env:
           TRAEFIK_ACME_EMAIL: ${{ secrets.TRAEFIK_ACME_EMAIL }}
           DEPLOY_TARGET: ${{ env.DEPLOY_TARGET }}
+          DASHBOARD_USER: ${{ secrets.TRAEFIK_DASHBOARD_USER }}
+          DASHBOARD_ACL_IP: ${{ secrets.DASHBOARD_ACL_IP }}
+          DOMAIN: ${{ vars.DOMAIN }}

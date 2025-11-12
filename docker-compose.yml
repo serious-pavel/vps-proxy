@@ -1,10 +1,12 @@
-version: '3.8'
-
 services:
   traefik:
     image: traefik:3
     environment:
-      - TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL}
+      - TRAEFIK_ACME_EMAIL
+      - DASHBOARD_USER
+      - DASHBOARD_ACL_IP
+      - DOMAIN
+
     container_name: traefik
     restart: always
     command:
