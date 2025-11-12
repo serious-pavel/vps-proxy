@@ -37,6 +37,7 @@ jobs:
 
             cd "$DEPLOY_TARGET"
             envsubst < dynamic_conf/dashboard.yml.template > dynamic_conf/dashboard.yml
+            envsubst < traefik.yml.template > traefik.yml
 
             export TRAEFIK_ACME_EMAIL="${TRAEFIK_ACME_EMAIL}"
             export DASHBOARD_USER="${DASHBOARD_USER}"
@@ -48,6 +49,6 @@ jobs:
         env:
           TRAEFIK_ACME_EMAIL: ${{ secrets.TRAEFIK_ACME_EMAIL }}
           DEPLOY_TARGET: ${{ env.DEPLOY_TARGET }}
-          DASHBOARD_USER: ${{ secrets.TRAEFIK_DASHBOARD_USER }}
+          DASHBOARD_USER: ${{ secrets.DASHBOARD_USER }}
           DASHBOARD_ACL_IP: ${{ secrets.DASHBOARD_ACL_IP }}
           DOMAIN: ${{ vars.DOMAIN }}
