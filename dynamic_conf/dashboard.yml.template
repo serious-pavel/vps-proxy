@@ -1,7 +1,7 @@
 http:
   routers:
     traefik-dashboard:
-      rule: "Host(`dashboard.${DOMAIN}`)"  # See how to inject DOMAIN below!
+      rule: "Host(`dashboard.${DOMAIN}`)"
       entryPoints:
         - websecure
       service: api@internal

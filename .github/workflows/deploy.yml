@@ -36,11 +36,14 @@ jobs:
             docker network inspect traefik >/dev/null 2>&1 || docker network create traefik
 
             cd "$DEPLOY_TARGET"
+            envsubst < dynamic_conf/dashboard.yml.template > dynamic_conf/dashboard.yml
+
             export TRAEFIK_ACME_EMAIL="${TRAEFIK_ACME_EMAIL}"
             export DASHBOARD_USER="${DASHBOARD_USER}"
             export DASHBOARD_ACL_IP="${DASHBOARD_ACL_IP}"
             export DOMAIN="${DOMAIN}"
             docker compose pull
+            
             docker compose up -d
         env:
           TRAEFIK_ACME_EMAIL: ${{ secrets.TRAEFIK_ACME_EMAIL }}
