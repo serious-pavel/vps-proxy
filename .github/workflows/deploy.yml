@@ -46,5 +46,5 @@ jobs:
           TRAEFIK_ACME_EMAIL: ${{ secrets.TRAEFIK_ACME_EMAIL }}
           DEPLOY_TARGET: ${{ env.DEPLOY_TARGET }}
           DASHBOARD_USER: ${{ secrets.DASHBOARD_USER }}
-          DASHBOARD_ACL_IP: ${{ secrets.RESTRICTED_IPS }}
+          RESTRICTED_IPS: ${{ secrets.RESTRICTED_IPS }}
           DOMAIN: ${{ vars.DOMAIN }}
