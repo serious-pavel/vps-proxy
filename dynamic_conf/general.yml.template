@@ -1,0 +1,6 @@
+http:
+  middlewares:
+    restricted-ips:
+      ipWhiteList:
+        sourceRange:
+          - "${RESTRICTED_IPS}"

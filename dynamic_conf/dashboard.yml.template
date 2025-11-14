@@ -7,7 +7,7 @@ http:
       service: api@internal
       middlewares:
         - dashboard-auth
-        - dashboard-whitelist
+        - restricted-ips
       tls:
         certResolver: le
 
@@ -16,7 +16,3 @@ http:
       basicAuth:
         users:
           - "${DASHBOARD_USER}"
-    dashboard-whitelist:
-      ipWhiteList:
-        sourceRange:
-          - "${DASHBOARD_ACL_IP}"
