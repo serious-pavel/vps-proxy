@@ -1,8 +1,17 @@
 entryPoints:
   web:
     address: ":80"
+    forwardedHeaders:
+      insecure: false
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
   websecure:
     address: ":443"
+    forwardedHeaders:
+      insecure: false
 
 api:
   dashboard: true
