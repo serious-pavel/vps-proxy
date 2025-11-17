@@ -11,6 +11,7 @@ services:
     restart: always
     command:
       - --configFile=/etc/traefik/traefik.yml
+      - --providers.docker.pollingInterval=15s
     ports:
       - "80:80"
       - "443:443"

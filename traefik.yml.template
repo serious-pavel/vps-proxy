@@ -19,7 +19,6 @@ api:
 
 providers:
   docker:
-    pollingInterval: 15s
     exposedByDefault: false
   file:
     directory: /etc/traefik/dynamic_conf
