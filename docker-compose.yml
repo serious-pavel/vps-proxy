@@ -11,8 +11,6 @@ services:
     restart: always
     command:
       - --configFile=/etc/traefik/traefik.yml
-      - --providers.docker=true
-      - --providers.docker.network=traefik
 
     ports:
       - "80:80"
