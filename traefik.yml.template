@@ -30,3 +30,8 @@ certificatesResolvers:
       email: ${TRAEFIK_ACME_EMAIL}
       storage: /letsencrypt/acme.json
       tlsChallenge: true
+
+log:
+  level: DEBUG
+
+accessLog: {}
