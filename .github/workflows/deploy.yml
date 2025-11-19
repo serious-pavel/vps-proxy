@@ -39,6 +39,7 @@ jobs:
             envsubst < dynamic_conf/dashboard.yml.template > dynamic_conf/dashboard.yml
             envsubst < dynamic_conf/general.yml.template > dynamic_conf/general.yml
             envsubst < traefik.yml.template > traefik.yml
+            envsubst < .env.template > .env
             
             docker compose pull
             docker compose up -d
