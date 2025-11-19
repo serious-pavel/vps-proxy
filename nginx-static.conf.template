@@ -14,8 +14,12 @@ server {
     autoindex off;
     server_tokens off;
 
-    if ($request_method !~ "^(GET|HEAD|OPTIONS)$") {
-        return 405;
+    if ($request_method != GET) {
+        if ($request_method != HEAD) {
+            if ($request_method != OPTIONS) {
+                return 405;
+            }
+        }
     }
 
     add_header Content-Security-Policy "default-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" always;
