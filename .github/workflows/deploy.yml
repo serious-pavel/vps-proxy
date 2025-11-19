@@ -40,7 +40,7 @@ jobs:
             envsubst < dynamic_conf/general.yml.template > dynamic_conf/general.yml
             envsubst < traefik.yml.template > traefik.yml
             envsubst < .env.template > .env
-            envsubst < nginx-static.conf.template > nginx-static.conf
+            envsubst '${DOMAIN}' < nginx-static.conf.template > nginx-static.conf
             
             docker compose pull
             docker compose up -d
