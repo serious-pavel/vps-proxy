@@ -51,4 +51,4 @@ services:
       - "traefik.http.routers.static.entrypoints=websecure"
       - "traefik.http.routers.static.tls.certresolver=le"
       - "traefik.http.services.static.loadbalancer.server.port=80"
-      - "traefik.http.routers.tagmate.middlewares=restricted-ips@file"
+      - "traefik.http.routers.static.middlewares=restricted-ips@file"
