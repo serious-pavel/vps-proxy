@@ -40,3 +40,4 @@ services:
       - "traefik.http.routers.tagmate-static.entrypoints=websecure"
       - "traefik.http.routers.tagmate-static.tls.certresolver=le"
       - "traefik.http.services.tagmate-static.loadbalancer.server.port=80"
+      - "traefik.http.routers.tagmate-secure.middlewares=restricted-ips@file"
