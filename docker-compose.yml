@@ -1,12 +1,16 @@
+networks:
+  traefik:
+    external: false
+    name: traefik
+
+volumes:
+  staticfiles:
+    external: false
+    name: staticfiles
+
 services:
   traefik:
     image: traefik:3
-    environment:
-      - TRAEFIK_ACME_EMAIL
-      - DASHBOARD_USER
-      - RESTRICTED_IPS
-      - DOMAIN
-
     container_name: traefik
     restart: always
     command:
@@ -23,6 +27,16 @@ services:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-networks:
-  traefik:
-    external: true
+  static:
+    image: nginx:alpine
+    volumes:
+      - staticfiles:/usr/share/nginx/html:ro
+    networks:
+      - traefik
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tagmate-static.rule=Host(`static.${DOMAIN}`)"
+      - "traefik.http.routers.tagmate-static.entrypoints=websecure"
+      - "traefik.http.routers.tagmate-static.tls.certresolver=le"
+      - "traefik.http.services.tagmate-static.loadbalancer.server.port=80"
