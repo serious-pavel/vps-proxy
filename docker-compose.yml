@@ -38,6 +38,7 @@ services:
 
   static:
     image: nginx:alpine
+    container_name: static
     volumes:
       - staticfiles:/usr/share/nginx/html:ro
       - ./nginx-static.conf:/etc/nginx/conf.d/default.conf:ro
@@ -46,8 +47,8 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.tagmate-static.rule=Host(`static.${DOMAIN}`)"
-      - "traefik.http.routers.tagmate-static.entrypoints=websecure"
-      - "traefik.http.routers.tagmate-static.tls.certresolver=le"
-      - "traefik.http.services.tagmate-static.loadbalancer.server.port=80"
-      - "traefik.http.routers.tagmate-secure.middlewares=restricted-ips@file"
+      - "traefik.http.routers.static.rule=Host(`static.${DOMAIN}`)"
+      - "traefik.http.routers.static.entrypoints=websecure"
+      - "traefik.http.routers.static.tls.certresolver=le"
+      - "traefik.http.services.static.loadbalancer.server.port=80"
+      - "traefik.http.routers.tagmate.middlewares=restricted-ips@file"
