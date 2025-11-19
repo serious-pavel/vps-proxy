@@ -1,0 +1,32 @@
+server {
+    listen 80;
+    server_name static.${DOMAIN};  # replace
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Global anti-cache / anti-index
+    add_header X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex" always;
+    add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
+    add_header Pragma "no-cache" always;
+    add_header Expires "0" always;
+
+    autoindex off;
+    server_tokens off;
+
+    if ($request_method !~ ^(GET|HEAD|OPTIONS)$) {
+        return 405;
+    }
+
+    add_header Content-Security-Policy "default-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" always;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "no-referrer" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+}
