@@ -1,6 +1,6 @@
 http:
   middlewares:
     restricted-ips:
-      ipWhiteList:
+      ipAllowList:
         sourceRange:
           - "${RESTRICTED_IPS}"
