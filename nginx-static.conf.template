@@ -26,6 +26,7 @@ server {
             deny all;
         }
 
-        try_files $uri $uri/ =404;
+        # $uri should be escaped to prevent replacing with envsubst
+        try_files \$uri \$uri/ =404;
     }
 }
