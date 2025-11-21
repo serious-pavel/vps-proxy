@@ -35,7 +35,8 @@ services:
     volumes:
       - staticfiles:/app/staticfiles
     restart: "no"
-    networks: {}
+    networks:
+      traefik:
 
   static:
     image: nginx:alpine
