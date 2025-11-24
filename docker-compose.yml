@@ -53,4 +53,3 @@ services:
       - "traefik.http.routers.static-secure.rule=Host(`static.${DOMAIN}`)"
       - "traefik.http.routers.static-secure.entrypoints=websecure"
       - "traefik.http.routers.static-secure.tls.certresolver=le"
-      - "traefik.http.routers.static-secure.middlewares=restricted-ips@file"
