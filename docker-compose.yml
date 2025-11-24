@@ -1,6 +1,6 @@
 networks:
   traefik:
-    external: false
+    external: true
     name: traefik
 
 volumes:
