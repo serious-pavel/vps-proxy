@@ -42,6 +42,7 @@ jobs:
             envsubst < .env.template > .env
             envsubst '${DOMAIN}' < nginx-static.conf.template > nginx-static.conf
             
+            docker compose down
             docker compose pull
             docker compose up -d
         env:
