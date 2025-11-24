@@ -3,6 +3,7 @@ server {
     server_name "static.${DOMAIN}";
 
     root /usr/share/nginx/html;
+    index index.html;
 
     # Global anti-cache / anti-index
     add_header X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex" always;
