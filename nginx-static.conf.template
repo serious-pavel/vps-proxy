@@ -5,6 +5,12 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
+    # Compression
+    gzip on;
+    gzip_types text/css application/javascript application/json text/javascript;
+    gzip_min_length 512;
+    gzip_comp_level 5;
+
     # Global anti-cache / anti-index
     add_header X-Robots-Tag "noindex, nofollow, noarchive, nosnippet, noimageindex" always;
     add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
