@@ -47,7 +47,6 @@ jobs:
             envsubst '${DOMAIN}' < nginx-static.conf.template > nginx-static.conf
             
             docker compose down
-            docker compose pull
             docker compose up -d
         env:
           TRAEFIK_ACME_EMAIL: ${{ secrets.TRAEFIK_ACME_EMAIL }}
