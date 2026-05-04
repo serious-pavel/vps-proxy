@@ -3,6 +3,9 @@ name: Deploy Traefik to VPS
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
   workflow_dispatch:
 
 jobs:
